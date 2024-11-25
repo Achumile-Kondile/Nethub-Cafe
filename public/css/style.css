@@ -1,0 +1,154 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+header {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+header .site-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #0069d9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Align items in the navbar vertically */
+    padding: 0 20px;
+}
+
+.navbar .navbar-brand {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+/* Fix the logo size */
+.navbar-logo {
+        max-width: 150px;  /* Limit logo size */
+        height: auto;      /* Maintain aspect ratio */
+    
+}
+
+/* Navbar Links */
+.navbar .nav-link {
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.navbar .nav-link:hover, .navbar .nav-link.active {
+    background-color: #0056b3;
+    border-radius: 4px;
+}
+
+.navbar .navbar-toggler {
+    border: none;
+}
+
+/* Main Content Styles */
+.container {
+    max-width: 100%; /* Adjusted for smaller screens */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #0069d9;
+}
+
+/* Form Styles */
+.form-label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    font-size: 1rem;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+    border-color: #0069d9;
+    box-shadow: 0 0 5px rgba(0, 105, 217, 0.5);
+}
+
+input[type="password"] {
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+}
+
+input[type="password"]:focus {
+    border-color: #0069d9;
+    box-shadow: 0 0 5px rgba(0, 105, 217, 0.5);
+}
+
+.invalid-feedback {
+    color: red;
+    font-size: 0.9rem;
+}
+
+.btn {
+    font-size: 1.1rem;
+    padding: 12px;
+    background-color: #0069d9;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 10px 0;
+    margin-top: auto;  /* Ensures the footer stays at the bottom if content is short */
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Ensure the body and html elements fill the whole viewport height */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Make the main content area flexible so that it can grow and push the footer down */
+main {
+    flex-grow: 1;
+}
+
+/* Ensure the cafe interior image fits well */
+.container img {
+    max-width: 20%;   /* Make the image responsive */
+    height: 30%;      /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+}
