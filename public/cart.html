@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nethub Cafe - Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   
+
+    <style>
+        body {
+            background-color: white;
+            color: black;
+        }
+        .navbar {
+            background-color: black;
+        }
+        .navbar-brand img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        .content {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background-color: #ff5722;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #ff5722;
+        }
+        .btn-danger {
+            background-color: black;
+            border: none;
+        }
+        .btn-danger:hover {
+            background-color: #444;
+        }
+        th {
+            background-color: #000;
+            color: white;
+        }
+        .table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        footer {
+            background-color: black;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+        @media (min-width: 768px) {
+            .content {
+                max-width: 600px;
+                margin: 40px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="/public/images/Nethub.png" alt="Nethub Logo" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container content mt-4">
+        <h2>Your Cart</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price (R)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                <!-- Items will be dynamically populated -->
+            </tbody>
+        </table>
+        <p id="cart-total" class="h5">Total: R0.00</p>
+        <button id="checkout-button" class="btn btn-primary">Checkout</button>
+    </div>
+    <footer>
+        <p>&copy; 2024 Nethub Cafe. All rights reserved. <a href="contact.html" style="color: #ff5722; text-decoration: none;">Contact us</a>.</p>
+    </footer>
+
+    <!-- Billing Information Modal -->
+    <div class="modal fade" id="billingModal" tabindex="-1" aria-labelledby="billingModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="billingModalLabel">Billing Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="payment-form">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="delivery" class="form-label">Select Delivery Option</label>
+                            <select class="form-select" id="delivery" onchange="toggleAddressField()">
+                                <option value="instore">In-store</option>
+                                <option value="pickup">Pickup</option>
+                                <option value="deliver">Deliver</option>
+                            </select>
+                        </div>
+                        <div class="mb-3" id="address-field" style="display: none;">
+                            <label for="address" class="form-label">Delivery Address</label>
+                            <input type="text" class="form-control" id="address" placeholder="Enter your delivery address">
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Amount (R)</label>
+                            <input type="number" class="form-control" id="amount" readonly>
+                        </div>
+                        <button type="submit" class="btn btn-success" id="paystack-button">Pay with Paystack</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function displayCart() {
+            const cartItemsElement = document.getElementById('cart-items');
+            cartItemsElement.innerHTML = '';
+            let totalAmount = 0;
+
+            cart.forEach((item, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>${item.quantity || 1}</td>
+                    <td>R${(item.price * (item.quantity || 1)).toFixed(2)}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">
+                            <i class="fas fa-trash-alt"></i> Remove
+                        </button>
+                    </td>
+                `;
+                cartItemsElement.appendChild(row);
+                totalAmount += item.price * (item.quantity || 1);
+            });
+
+            document.getElementById('cart-total').textContent = `Total: R${totalAmount.toFixed(2)}`;
+            document.getElementById('amount').value = totalAmount.toFixed(2);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        }
+
+        function toggleAddressField() {
+            const deliveryOption = document.getElementById('delivery').value;
+            const addressField = document.getElementById('address-field');
+            if (deliveryOption === 'deliver') {
+                addressField.style.display = 'block';
+            } else {
+                addressField.style.display = 'none';
+            }
+        }
+
+        document.getElementById('checkout-button').addEventListener('click', function() {
+            if (cart.length === 0) {
+                alert('Your cart is empty! Please add items to proceed.');
+                return;
+            }
+            displayCart();
+            const modal = new bootstrap.Modal(document.getElementById('billingModal'));
+            modal.show();
+        });
+
+        document.getElementById('payment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Initiate Paystack payment
+            const amount = parseFloat(document.getElementById('amount').value) * 100; // Amount in kobo (Paystack requires it in kobo)
+            const paystackHandler = PaystackPop.setup({
+                key: 'pk_test_bee93d4749d09707d5ec94e5c1c2f35aa8e521d1', // Replace with your Paystack public key
+                email: document.getElementById('email').value,
+                amount: amount,  // Amount in kobo (100 units of your currency)
+                currency: 'ZAR', // Update this with the correct currency (e.g., 'NGN', 'USD', 'ZAR')
+                ref: 'order_' + Math.floor(Math.random() * 1000000), // Unique reference number
+                callback: function(response) {
+            if (response.status === 'success') {
+                // Redirect to the home page
+                window.location.href = 'index.html';  // Redirect to the home page after successful payment
+            } else {
+                alert("Payment failed, please try again.");
+            }
+        },
+        onClose: function() {
+            alert('Payment window closed.');
+        }
+    });
+            paystackHandler.openIframe();
+        });
+
+        // Initialize the cart display
+        displayCart();
+    </script>
+</body>
+</html>

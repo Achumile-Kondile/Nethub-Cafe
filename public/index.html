@@ -3,17 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nethub Cafe - Home</title>
+    <title>Nethub Cafe - Sign Up</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css"> <!-- Your custom styles -->
+    <link rel="stylesheet" href="/public/css/style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Styling for the page */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative; /* Set relative positioning for absolute positioning of video */
+            overflow: hidden; /* Prevent scrollbars from showing */
+            padding-bottom: 80px; /* Space for footer */
+            margin: 0; /* Reset body margin */
+        }
+        footer {
+            background-color: black; /* Set footer background color */
+            color: white; /* Set footer text color */
+            position: fixed; /* Fix the footer at the bottom */
+            left: 0; /* Align footer to the left */
+            bottom: 0; /* Align footer to the bottom */
+            width: 100%; /* Full width */
+            text-align: center; /* Center text */
+            padding: 10px 0; /* Padding for footer */
+            z-index: 3; /* Ensure footer is above the video */
+        }
+        .form-container {
+            display: none; /* Hide forms initially */
+            margin-top: 20px; /* Space above the forms */
+            max-width: 400px; /* Set maximum width for the form */
+            margin-left: auto; /* Center the form horizontally */
+            margin-right: auto; /* Center the form horizontally */
+            position: relative; /* To stack forms above the video */
+            z-index: 2; /* Ensure forms are above the video */
+        }
+
+        /* Navbar styling */
+        .navbar {
+            transition: background-color 0.3s;
+        }
+        .navbar {
+            background-color: black; /* Default navbar background color */
+            z-index: 3; /* Ensure navbar is above the video */
+        }
+
+        /* Video background styling */
+        video {
+            position: absolute; /* Position video absolutely */
+            top: 0; /* Align to the top */
+            left: 0; /* Align to the left */
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            z-index: 1; /* Set video behind other content */
+            object-fit: cover; /* Ensure video covers the area */
+            opacity: 0.8; /* Optional: add some transparency to the video */
+        }
+
+        /* Button styling */
+        .btn-primary {
+            background-color: #ff5722; /* Set button color */
+            border-color: #ff5722; /* Set button border color */
+            max-width: 200px; /* Set maximum button width */
+            width: 100%; /* Allow button to take full width of its container */
+        }
+        .btn-primary:hover {
+            background-color: #e64a19; /* Darker shade on hover */
+            border-color: #e64a19; /* Darker border on hover */
+        }
+
+        /* Table header styling */
+        th {
+            background-color: black; /* Black background for table header */
+            color: white; /* White text for table header */
+        }
+    </style>
 </head>
 <body>
     
+    <!-- Background Video -->
+    <video autoplay muted loop>
+        <source src="/public/videos/background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="/images/Nethub.png" alt="Nethub Logo" class="logo img-fluid">
+                <img src="/public/images/Nethub.png" alt="Nethub Logo" class="navbar-logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -21,30 +99,104 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
                     <li class="nav-item active"><a class="nav-link" href="pricing.html">Pricing</a></li>
-                    <li class="nav-item"><a class="nav-link" href="signup.html">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <div class="container">
-        <h2 class="mt-4 text-center">Welcome to Nethub Cafe</h2>
-        <p class="text-center">Your perfect spot for food, coffee, and fun!</p>
-        <img src="images/index.jpg" alt="Cafe Interior" class="img-fluid rounded">
+    <div class="container mt-5 text-center" style="position: relative; z-index: 2;">
+        <h2>Welcome to Nethub Cafe</h2>
+        <p>Your perfect spot for food, coffee, and fun!</p>
+
+        <!-- Sign-Up Button -->
+        <div>
+            <a href="#" class="btn btn-primary" onclick="showSignupForm()">Sign Up</a>
+        </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3 mt-4">
-        <p>&copy; 2024 Nethub Cafe. All rights reserved.</p>
+    <!-- Sign-Up Form -->
+    <div id="signupForm" class="form-container">
+        <h3 class="text-center">Sign Up</h3>
+        <form onsubmit="handleSignup(event)">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <p class="mt-3">Already have an account? <a href="#" onclick="showSigninForm()">Sign In</a></p>
+        </form>
+    </div>
+
+    <!-- Sign-In Form -->
+    <div id="signinForm" class="form-container">
+        <h3 class="text-center">Sign In</h3>
+        <form onsubmit="handleSignin(event)">
+            <div class="mb-3">
+                <label for="signinEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="signinEmail" name="signinEmail" required>
+            </div>
+            <div class="mb-3">
+                <label for="signinPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="signinPassword" name="signinPassword" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign In</button>
+            <p class="mt-3">Don't have an account? <a href="#" onclick="showSignupForm()">Sign Up</a></p>
+        </form>
+    </div>
+
+    <!-- Sticky Footer -->
+    <footer>
+        <p>&copy; 2024 Nethub Cafe. All rights reserved. <a href="contact.html">Contact us</a>.</p>
     </footer>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="app.js"></script>
+    <script>
+        function showSignupForm() {
+            document.getElementById('signinForm').style.display = 'none'; // Hide sign-in form
+            document.querySelector('.container.mt-5.text-center').style.display = 'none'; // Hide the welcome message
+            document.getElementById('signupForm').style.display = 'block'; // Show the sign-up form
+        }
+
+        function showSigninForm() {
+            document.getElementById('signupForm').style.display = 'none'; // Hide sign-up form
+            document.querySelector('.container.mt-5.text-center').style.display = 'none'; // Hide the welcome message
+            document.getElementById('signinForm').style.display = 'block'; // Show the sign-in form
+        }
+
+        function handleSignup(event) {
+            event.preventDefault(); // Prevent the default form submission
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            console.log('Sign Up Data:', { username, email, password });
+            alert('Sign Up data has been logged to the console.'); // Display a message
+            // Clear the form
+            document.getElementById('signupForm').reset();
+        }
+
+        function handleSignin(event) {
+            event.preventDefault(); // Prevent the default form submission
+            const email = document.getElementById('signinEmail').value;
+            const password = document.getElementById('signinPassword').value;
+            console.log('Sign In Data:', { email, password });
+            alert('Sign In data has been logged to the console.'); // Display a message
+            // Clear the form
+            document.getElementById('signinForm').reset();
+        }
+    </script>
 </body>
 </html>

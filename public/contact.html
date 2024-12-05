@@ -5,17 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nethub Cafe - Contact Us</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
-
-
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .navbar {
+            background-color: black;
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
-    
-
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="/images/Nethub.png" alt="Nethub Logo" class="logo">
+                <img src="/public/images/Nethub.png" alt="Nethub Logo" class="navbar-logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -23,20 +29,20 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="pricing.html">Pricing</a></li>
-                    <li class="nav-item"><a class="nav-link" href="signup.html">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
                 </ul>
             </div>
         </div>
     </nav>
     
-
-    <div class="container">
-        <h2>Contact Us</h2>
-        <form>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Contact Us</h2>
+        <form action="https://formsubmit.co/achumilekondile@gmail.com" method="POST" class="contact-form" onsubmit="alert('Thank you for your message! Redirecting you to the homepage...'); window.location.href='index.html'; return false;">
+            <input type="hidden" name="_captcha" value="false">
+            
             <div class="mb-3">
                 <label for="name" class="form-label">Your Name</label>
                 <input type="text" class="form-control" id="name" name="name" required>
@@ -49,12 +55,12 @@
                 <label for="message" class="form-label">Your Message</label>
                 <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
             </div>
-            <button type="submit" class="btn">Send Message</button>
+            <button type="submit" class="btn btn-primary">Send Message</button>
         </form>
     </div>
 
     <footer>
-        <p>&copy; 2024 Nethub Cafe. All rights reserved.</p>
+        <p>&copy; 2024 Nethub Cafe. All rights reserved. <a href="contact.html">Contact us</a>.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

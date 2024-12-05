@@ -1,16 +1,16 @@
 /* Global Styles */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: #f8f9fa; /* Light background for better contrast */
+    color: black; /* Dark text color for readability */
     margin: 0;
     padding: 0;
 }
 
 /* Header Styles */
 header {
-    background-color: #343a40;
-    color: white;
+    background-color: #000; /* Black */
+    color: #fff; /* White */
     text-align: center;
     padding: 20px 0;
 }
@@ -22,7 +22,7 @@ header .site-title {
 
 /* Navbar Styles */
 .navbar {
-    background-color: #0069d9;
+    background-color: #ff5722; /* Bright Orange */
     display: flex;
     justify-content: space-between;
     align-items: center; /* Align items in the navbar vertically */
@@ -31,24 +31,23 @@ header .site-title {
 
 .navbar .navbar-brand {
     font-size: 1.5rem;
-    color: #fff;
+    color: #fff; /* White */
 }
 
 /* Fix the logo size */
 .navbar-logo {
-        max-width: 150px;  /* Limit logo size */
-        height: auto;      /* Maintain aspect ratio */
-    
+    max-width: 150px; /* Limit logo size */
+    height: auto; /* Maintain aspect ratio */
 }
 
 /* Navbar Links */
 .navbar .nav-link {
-    color: #fff;
+    color: #fff; /* White */
     font-size: 1.1rem;
 }
 
 .navbar .nav-link:hover, .navbar .nav-link.active {
-    background-color: #0056b3;
+    background-color: #e64a19; /* Darker Orange */
     border-radius: 4px;
 }
 
@@ -67,7 +66,7 @@ h2 {
     font-size: 2rem;
     margin-bottom: 20px;
     text-align: center;
-    color: #0069d9;
+    color: #000; /* Black */
 }
 
 /* Form Styles */
@@ -82,24 +81,24 @@ h2 {
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 4px;
-    border: 1px solid #ced4da;
+    border: 1px solid #ced4da; /* Light Gray */
 }
 
 .form-control:focus {
-    border-color: #0069d9;
-    box-shadow: 0 0 5px rgba(0, 105, 217, 0.5);
+    border-color: #ff5722; /* Bright Orange */
+    box-shadow: 0 0 5px rgba(255, 87, 34, 0.5); /* Light Orange */
 }
 
 input[type="password"] {
     font-size: 1rem;
     padding: 10px;
     border-radius: 4px;
-    border: 1px solid #ced4da;
+    border: 1px solid #ced4da; /* Light Gray */
 }
 
 input[type="password"]:focus {
-    border-color: #0069d9;
-    box-shadow: 0 0 5px rgba(0, 105, 217, 0.5);
+    border-color: #ff5722; /* Bright Orange */
+    box-shadow: 0 0 5px rgba(255, 87, 34, 0.5); /* Light Orange */
 }
 
 .invalid-feedback {
@@ -110,29 +109,56 @@ input[type="password"]:focus {
 .btn {
     font-size: 1.1rem;
     padding: 12px;
-    background-color: #0069d9;
+    background-color: #ff5722; /* Bright Orange */
     border: none;
-    color: #fff;
+    color: #fff; /* White */
     border-radius: 4px;
     width: 100%;
 }
 
 .btn:hover {
-    background-color: #0056b3;
+    background-color: #e64a19; /* Darker Orange */
 }
 
-/* Footer Styles */
-footer {
-    background-color: #343a40;
+ /*Footer Styles */
+ footer {
+    background-color: #000; /* Black */
     color: white;
     padding: 10px 0;
-    margin-top: auto;  /* Ensures the footer stays at the bottom if content is short */
+    margin-top: auto; /* Ensures the footer stays at the bottom if content is short */
+    /* Make the body a flex container */
 }
+
+    html, body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* Ensure the content takes up available space */
+    .content {
+        flex: 1;
+    }
+
 
 footer p {
     margin: 0;
 }
+footer {
+    background-color: black;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+footer a {
+    color: #ff5722; /* Orange color for the link */
+    text-decoration: none; /* Remove underline */
+}
 
+footer a:hover {
+    text-decoration: underline; /* Add underline on hover for better UX */
+}
 /* Ensure the body and html elements fill the whole viewport height */
 html, body {
     height: 100%;
@@ -148,7 +174,64 @@ main {
 
 /* Ensure the cafe interior image fits well */
 .container img {
-    max-width: 20%;   /* Make the image responsive */
-    height: 30%;      /* Maintain aspect ratio */
+    max-width: 20%; /* Make the image responsive */
+    height: 30%; /* Maintain aspect ratio */
     object-fit: cover; /* Ensure the image covers the area without distortion */
+}
+
+/* Cart Styles */
+#cart-items {
+    margin-bottom: 20px;
+}
+
+#cart-total {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#checkout-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2rem;
+}
+
+/* Content container styles */
+.content {
+    background-color: #ffffff; /* White background for content area */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(9, 1, 1, 0.853); /* Subtle shadow for depth */
+    padding: 20px; /* Padding inside the content */
+}
+
+
+.navbar {
+    background-color: black; /* Default navbar background color */
+}
+/* Cart items styles */
+.list-group-item {
+    background-color: #f8f9fa; /* Light gray for list items */
+    border: none; /* Remove border */
+}
+
+.list-group-item:hover {
+    background-color: #e2e6ea; /* Darker gray on hover */
+}
+
+/* Modal styles */
+.modal-content {
+    border-radius: 8px; /* Rounded corners for modal */
+}
+
+/* Input field styles */
+.form-control {
+    border-radius: 4px; /* Slightly rounded corners for input fields */
+}
+
+/* Responsive styling */
+@media (max-width: 576px) {
+    .content {
+        padding: 15px; /* Less padding on small screens */
+    }
 }

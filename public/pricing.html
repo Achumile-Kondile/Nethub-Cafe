@@ -1,21 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nethub Cafe - Pricing</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/public/css/style.css"> 
+    <style>
+        /* General styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
 
+        /* Navbar styling */
+        .navbar {
+            transition: background-color 0.3s;
+        }
+        .navbar {
+            background-color: black; /* Default navbar background color */
+            z-index: 3; /* Ensure navbar is above the video */
+        }
 
+        .navbar a.nav-link {
+            color: white;
+        }
+
+        /* Pricing items layout */
+        .item-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .navbar-logo {
+            max-width: 100px; /* Set maximum width */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        .item {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .item img {
+            width: 50%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .item-details {
+            margin-top: 15px;
+        }
+
+        .item-details h5 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .item-details span {
+            color: #ff5722;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-top: 10px;
+        }
+
+        .btn {
+            background-color: #ff5722; /* Set button color */
+            border-color: #ff5722;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        /* Cart styling */
+        .cart-container {
+            display: none;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .checkout-btn {
+            margin-top: 10px;
+            width: 100%;
+            background-color: #ff5722;
+            color: white;
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: black;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #ff5722;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
-<body>
-    
 
+<body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="/images/Nethub.png" alt="Nethub Logo" class="logo">
+                <img src="/public/images/Nethub.png" alt="Nethub Logo" class="navbar-logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -23,121 +144,131 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="pricing.html">Pricing</a></li>
-                    <li class="nav-item"><a class="nav-link" href="signup.html">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    
-
-    <div class="container">
+    <div class="container my-4">
         <h2>Pricing</h2>
         <p>Explore our competitive pricing for our services:</p>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Service</th>
-                    <th>Price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Coffee and Beverages</td>
-                    <td>R2.50</td>
-                    <td><button class="btn btn-info" onclick="payService('Coffee and Beverages', 2.50)">Pay</button></td>
-                </tr>
-                <tr>
-                    <td>Fresh Pastries</td>
-                    <td>R3.00</td>
-                    <td><button class="btn btn-info" onclick="payService('Fresh Pastries', 3.00)">Pay</button></td>
-                </tr>
-                <tr>
-                    <td>Live Music Events</td>
-                    <td>R5.00</td>
-                    <td><button class="btn btn-info" onclick="payService('Live Music Events', 5.00)">Pay</button></td>
-                </tr>
-                <tr>
-                    <td>Co-working Space</td>
-                    <td>R15/hour</td>
-                    <td><button class="btn btn-info" onclick="payService('Co-working Space', 15)">Pay</button></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- Payment Modal -->
-        <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="paymentModalLabel">Billing Information</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="payment-form-submit">
-                            <div class="mb-3">
-                                <label for="customer-name" class="form-label">Your Name</label>
-                                <input type="text" class="form-control" id="customer-name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="customer-email" class="form-label">Your Email</label>
-                                <input type="email" class="form-control" id="customer-email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="service-selected" class="form-label">Service</label>
-                                <input type="text" class="form-control" id="service-selected" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label for="amount" class="form-label">Amount</label>
-                                <input type="text" class="form-control" id="amount" readonly>
-                            </div>
-                            <button type="button" class="btn btn-success" id="paystack-button">Pay Now</button>
-                        </form>
-                    </div>
+        <div class="item-container">
+            <!-- Coffee -->
+            <div class="item">
+                <img src="/public/images/Coffee.png" alt="Coffee">
+                <div class="item-details">
+                    <h5>Coffee</h5>
+                    <span id="coffeePrice">R2.50</span>
                 </div>
+                <div class="form-group">
+                    <label for="coffeeType">Select Coffee Type:</label>
+                    <select id="coffeeType" class="form-select" onchange="updateCoffeePrice()">
+                        <option value="regular" data-price="2.50">Regular</option>
+                        <option value="decaf" data-price="3.00">Decaf</option>
+                        <option value="espresso" data-price="3.50">Espresso</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="coffeeQuantity">Quantity:</label>
+                    <input type="number" id="coffeeQuantity" class="form-control" min="1" value="1">
+                </div>
+                <button class="btn btn-info add-to-cart-btn" onclick="addCoffeeToCart()">Add Coffee to Cart</button>
+            </div>
+
+            <!-- Sandwich -->
+            <div class="item">
+                <img src="/public/images/sandwhich.png" alt="Sandwich">
+                <div class="item-details">
+                    <h5>Sandwich</h5>
+                    <span id="sandwichPrice">R3.50</span>
+                </div>
+                <div class="form-group">
+                    <label for="sandwichType">Select Sandwich Type:</label>
+                    <select id="sandwichType" class="form-select" onchange="updateSandwichPrice()">
+                        <option value="hamAndCheese" data-price="3.50">Ham and Cheese</option>
+                        <option value="tuna" data-price="4.00">Tuna</option>
+                        <option value="veggie" data-price="3.00">Veggie</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sandwichQuantity">Quantity:</label>
+                    <input type="number" id="sandwichQuantity" class="form-control" min="1" value="1">
+                </div>
+                <button class="btn btn-info add-to-cart-btn" onclick="addSandwichToCart()">Add Sandwich to Cart</button>
+            </div>
+
+            <!-- Pastry -->
+            <div class="item">
+                <img src="/public/images/pastry.png" alt="Pastry">
+                <div class="item-details">
+                    <h5>Pastry</h5>
+                    <span id="pastryPrice">R3.00</span>
+                </div>
+                <div class="form-group">
+                    <label for="pastryType">Select Pastry Type:</label>
+                    <select id="pastryType" class="form-select" onchange="updatePastryPrice()">
+                        <option value="croissant" data-price="3.00">Croissant</option>
+                        <option value="danish" data-price="3.50">Danish</option>
+                        <option value="muffin" data-price="2.50">Muffin</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pastryQuantity">Quantity:</label>
+                    <input type="number" id="pastryQuantity" class="form-control" min="1" value="1">
+                </div>
+                <button class="btn btn-info add-to-cart-btn" onclick="addPastryToCart()">Add Pastry to Cart</button>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2024 Nethub Cafe. All rights reserved.</p>
+        <p>&copy; 2024 Nethub Cafe. All rights reserved. <a href="contact.html">Contact us</a>.</p>
     </footer>
 
-    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function payService(service, amount) {
-            // Set the service and amount in the modal fields
-            document.getElementById('service-selected').value = service;
-            document.getElementById('amount').value = `R${amount.toFixed(2)}`;
+        // Initialize an empty cart if none exists
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            // Show the payment modal
-            var myModal = new bootstrap.Modal(document.getElementById('paymentModal'));
-            myModal.show();
+        // Function to add coffee to the cart
+        function addCoffeeToCart() {
+            const coffeeType = document.getElementById('coffeeType').value;
+            const coffeePrice = parseFloat(document.querySelector(`#coffeeType option[value="${coffeeType}"]`).dataset.price);
+            const coffeeQuantity = parseInt(document.getElementById('coffeeQuantity').value);
+            const coffee = { name: `Coffee (${coffeeType})`, price: coffeePrice, quantity: coffeeQuantity };
 
-            // Set up Paystack button click handler
-            document.getElementById('paystack-button').onclick = function() {
-                var handler = PaystackPop.setup({
-                    key: 'pk_test_bee93d4749d09707d5ec94e5c1c2f35aa8e521d1', // Replace with your Paystack public key
-                    email: document.getElementById('customer-email').value,
-                    amount: amount * 100, // Convert to kobo
-                    currency: 'ZAR', // Change to your preferred currency
-                    ref: '' + Math.floor((Math.random() * 1000000000) + 1), // Generate unique reference
-                    callback: function(response) {
-                        alert('Payment complete! Transaction reference: ' + response.reference);
-                        // Optionally, you can submit the form here for further processing
-                    },
-                    onClose: function() {
-                        alert('Transaction was cancelled.');
-                    }
-                });
-                handler.openIframe();
-            };
+            cart.push(coffee);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert('Coffee added to cart!');
+        }
+
+        // Function to add sandwich to the cart
+        function addSandwichToCart() {
+            const sandwichType = document.getElementById('sandwichType').value;
+            const sandwichPrice = parseFloat(document.querySelector(`#sandwichType option[value="${sandwichType}"]`).dataset.price);
+            const sandwichQuantity = parseInt(document.getElementById('sandwichQuantity').value);
+            const sandwich = { name: `Sandwich (${sandwichType})`, price: sandwichPrice, quantity: sandwichQuantity };
+
+            cart.push(sandwich);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert('Sandwich added to cart!');
+        }
+
+        // Function to add pastry to the cart
+        function addPastryToCart() {
+            const pastryType = document.getElementById('pastryType').value;
+            const pastryPrice = parseFloat(document.querySelector(`#pastryType option[value="${pastryType}"]`).dataset.price);
+            const pastryQuantity = parseInt(document.getElementById('pastryQuantity').value);
+            const pastry = { name: `Pastry (${pastryType})`, price: pastryPrice, quantity: pastryQuantity };
+
+            cart.push(pastry);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert('Pastry added to cart!');
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

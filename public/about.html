@@ -5,17 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nethub Cafe - About Us</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Ensure body takes full height */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Make the body take full height of the viewport */
+            background-color: #f8f9fa; /* Light background for better contrast */
+        }
 
+        /* Style for navbar */
+        .navbar {
+            background-color: black; /* Default navbar background color */
+        }
 
+        /* Style for footer */
+        footer {
+            margin-top: auto; /* Push footer to the bottom */
+            background-color: black; /* Footer background color */
+            color: white; /* Footer text color */
+        }
+
+        /* Style for the content container */
+        .content-container {
+            max-width: 800px; /* Maximum width for readability */
+            margin: auto; /* Center the container */
+            padding: 30px 15px; /* Add padding around the content */
+            background-color: #ffffff; /* White background for the content area */
+            border-radius: 10px; /* Rounded corners for the content area */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+
+        /* Style for headings */
+        h2, h3 {
+            color: black; /* Dark color for headings */
+            margin-bottom: 20px; /* Space below headings */
+        }
+
+        /* Style for paragraphs */
+        p {
+            line-height: 1.6; /* Improve line spacing for readability */
+            color: black; /* Dark grey for text color */
+            margin-bottom: 15px; /* Space below paragraphs */
+        }
+
+        /* Center text for specific sections */
+        .text-center {
+            text-align: center; /* Center-align text */
+        }
+    </style>
 </head>
 <body>
-    
 
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="/images/Nethub.png" alt="Nethub Logo" class="logo">
+                <img src="/public/images/Nethub.png" alt="Nethub Logo" class="navbar-logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -23,25 +70,37 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="pricing.html">Pricing</a></li>
-                    <li class="nav-item"><a class="nav-link" href="signup.html">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    
 
-    <div class="container">
-        <h2>About Us</h2>
-        <p>At Nethub Cafe, we believe in providing a warm and inviting environment where you can enjoy delicious food, refreshing beverages, and great company. Our team is dedicated to ensuring every visit is a pleasant one.</p>
-        <img src="pictures/team.jpg" alt="Our Team" class="img-fluid">
+    <div class="container mt-5 content-container">
+        <h2 class="text-center mb-4">About Us</h2>
+        <p class="text-center">Welcome to Nethub Cafe, where we provide a warm and inviting environment for you to enjoy delicious food, refreshing beverages, and great company. Our dedicated team is committed to ensuring that every visit is a memorable experience.</p>
+        
+        <p>Founded in 2024, Nethub Cafe aspires to be more than just a dining destination; we aim to create a vibrant community hub where people can connect, collaborate, and unwind. Our menu features a diverse selection of freshly prepared meals, artisanal coffees, and delightful pastries, all crafted with high-quality ingredients sourced from local suppliers.</p>
+        
+        <h3 class="text-center mb-4">Mission</h3>
+        <p>Our mission is to foster a sense of community through exceptional service and a commitment to quality. We strive to create an atmosphere that encourages creativity and connection, making our cafe the perfect spot for studying, meeting friends, or simply relaxing.</p>
+        
+        <h3 class="text-center mb-4">Vision</h3>
+        <p>At Nethub Cafe, our vision is to be recognized as a leader in the hospitality industry, known for our dedication to sustainability and community engagement. We aim to reduce our environmental impact by minimizing waste, using biodegradable packaging, and supporting local farms.</p>
+        
+        <p>Our cafe features cozy seating, free Wi-Fi, and an abundance of natural light, creating the ideal atmosphere for every occasion. We also host a variety of events, including live music nights, art exhibitions, and community workshops, all designed to enhance creativity and build connections among our patrons.</p>
+
+        <div class="text-center">
+            <h3>Our Values</h3>
+            <p>We believe in quality, sustainability, and community engagement. Our commitment to these values shapes everything we do at Nethub Cafe.</p>
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2024 Nethub Cafe. All rights reserved.</p>
+        <p>&copy; 2024 Nethub Cafe. All rights reserved. <a href="contact.html">Contact us</a>.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
